@@ -1,0 +1,39 @@
+name: post
+description: A new Flutter project.
+
+# Prevent accidental publishing to pub.dev.
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.13.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  json_annotation: ^4.0.1
+  
+  # For Architecture
+  flutter_hooks: ^0.18.0
+  hooks_riverpod: ^1.0.0
+
+  # For Navigation
+  auto_route: ^3.0.4
+  shimmer: ^2.0.0
+  
+  template:
+    path: ../../
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  build_runner:
+  # For model
+  json_serializable: ^5.0.2
+  flutter_lints: ^1.0.0
+
+flutter:
+  uses-material-design: true

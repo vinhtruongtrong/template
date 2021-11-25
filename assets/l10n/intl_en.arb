@@ -1,0 +1,25 @@
+{
+    "appTitle": "Ree<Pay",
+    "@appTitle": {
+        "description": "The title of the application"
+    },
+    "greetingMessage": "Hello {user}",
+    "@greetingMessage": {
+        "placeholders": {
+            "user": {}
+        }
+    },
+    "loginButton": "Login",
+    "@loginButton": {
+        "description": "This is title of button login at login page"
+    },
+    "forgotPasswordButton": "Forgot password",
+    "@forgotPasswordButton": {
+        "description": "This is title of button forgot password at login page"
+    },
+    "logoutButton": "Logout",
+    "language": "Language",
+    "languageDescription": "You can change language",
+    "darkMode": "Dark mode",
+    "darkModeDescription": "You can change theme mode"
+}

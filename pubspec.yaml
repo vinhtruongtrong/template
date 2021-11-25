@@ -1,0 +1,97 @@
+name: template
+description: A new Flutter project.
+
+# Prevent accidental publishing to pub.dev.
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  
+  # For Networking
+  dio: ^4.0.3
+
+  # Convert between Enum and String
+  enum_to_string: ^2.0.1
+  
+  # For local storage
+  shared_preferences: ^2.0.7
+  flutter_secure_storage: ^4.2.1
+
+  # For model
+  json_annotation: ^4.0.1
+
+  # For Architecture
+  flutter_hooks: ^0.18.0
+  hooks_riverpod: ^1.0.0
+
+  #For check network
+  connectivity_plus: ^2.0.2
+
+  # For Navigation
+  auto_route: ^3.0.4
+
+  # For DateTime
+  intl: ^0.17.0
+
+  google_fonts: ^2.1.0
+
+  user_agent:
+    path: packages/user_agent
+
+  # Domain packages
+  authentication:
+    path: packages/authentication
+  home:
+    path: packages/home
+  post:
+    path: packages/post
+  settings:
+    path: packages/settings
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  build_runner:
+  json_serializable: ^5.0.0
+  # For Navigation
+  auto_route_generator: ^3.0.1
+  # For generate asset path
+  flutter_gen_runner:
+  flutter_lints: ^1.0.0
+
+flutter_gen:
+  output: lib/generated/
+  line_length: 80
+
+  integrations:
+    flutter_svg: false
+    flare_flutter: false
+
+  assets:
+    enabled: true
+    package_parameter_enabled: true
+    style: dot-delimiter
+    
+  fonts:
+    enabled: true
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/animations/
+  
+  fonts:
+    - family: Rotunda
+      fonts:
+        - asset: assets/fonts/Rotunda-Bold.otf
+          weight: 700

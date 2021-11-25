@@ -1,0 +1,16 @@
+{
+    "appTitle": "Ree<Pay",
+    "greetingMessage": "Xin chào {user}",
+    "@greetingMessage": {
+        "placeholders": {
+            "user": {}
+        }
+    },
+    "loginButton": "Đăng nhập",
+    "forgotPasswordButton": "Quên mật khẩu",
+    "logoutButton": "Đăng xuất",
+    "language": "Ngôn ngữ",
+    "languageDescription": "Bạn có thể thay đổi ngôn ngữ",
+    "darkMode": "Giao diện đêm",
+    "darkModeDescription": "Bạn có thể thay đổi giao diện đêm"
+}
