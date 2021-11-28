@@ -1,24 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:validator/input_validator.dart';
+import 'package:template/core/src/widgets/loading/loading_state_viewmodel.dart';
 
-class LoginForm extends StatelessWidget {
+class LoginForm extends HookConsumerWidget {
+  const LoginForm({
+    Key? key,
+    this.formKey,
+    this.usernameController,
+    this.passwordController,
+    this.loadingState,
+  }) : super(key: key);
+
   final _userNameKey = const ValueKey('_userNameKey');
   final _passwordKey = const ValueKey('_passwordKey');
 
   final GlobalKey<FormState>? formKey;
   final TextEditingController? usernameController;
   final TextEditingController? passwordController;
-  final bool isLockUI;
-  const LoginForm({
-    Key? key,
-    this.formKey,
-    this.usernameController,
-    this.passwordController,
-    this.isLockUI = false,
-  }) : super(key: key);
+  final ChangeNotifierProvider<LoadingStateViewModel>? loadingState;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isLoading = loadingState != null
+        ? ref
+            .watch(
+              loadingState!,
+            )
+            .isLoading
+        : false;
     return Form(
       key: formKey,
       onChanged: () {},
@@ -27,7 +37,7 @@ class LoginForm extends StatelessWidget {
           TextFormField(
             key: _userNameKey,
             controller: usernameController,
-            enabled: !isLockUI,
+            enabled: !isLoading,
             decoration: InputDecoration(
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
@@ -58,7 +68,7 @@ class LoginForm extends StatelessWidget {
           TextFormField(
             key: _passwordKey,
             controller: passwordController,
-            enabled: !isLockUI,
+            enabled: !isLoading,
             obscureText: true,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: (input) {

@@ -11,7 +11,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:template/core/src/foundation/foundation.dart';
 import 'package:user_agent/user_agent_helper.dart';
-import '../foundation/src/constants.dart';
 
 class HttpHelper with DioMixin implements Dio {
   HttpHelper._({BaseOptions? options}) {

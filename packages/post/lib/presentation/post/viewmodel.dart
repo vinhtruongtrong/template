@@ -21,7 +21,6 @@ class PostViewModel extends BaseViewModel {
   bool _canLoadMore = true;
   bool get canLoadMore => _canLoadMore;
 
-  // final posts = ValueNotifier<List<Post>>([]);
   final posts = <Post>[];
 
   bool _isLoading = false;
@@ -37,22 +36,21 @@ class PostViewModel extends BaseViewModel {
     if (!_isLoading && _canLoadMore) {
       _isLoading = true;
       final useCase = GetPostsPagingUseCase(postRepo: _postRepo);
-      final result = await useCase
+      useCase
           .call(GetPostsPagingParam(pageIndex: _currentPage, pageSize: 20))
-          .then((posts) {
-        return posts;
-      }).catchError((error) {
-        return const <Post>[];
+          .then((value) {
+        value.ifSuccess((data) {
+          if (data.isNotEmpty) {
+            posts.addAll(data);
+            _currentPage++;
+          } else {
+            _canLoadMore = false;
+          }
+        });
+      }).whenComplete(() {
+        _isLoading = false;
+        notifyListeners();
       });
-
-      if (result.isNotEmpty == true) {
-        posts.addAll(result);
-        _currentPage++;
-      } else {
-        _canLoadMore = false;
-      }
-      _isLoading = false;
-      notifyListeners();
     }
   }
 }

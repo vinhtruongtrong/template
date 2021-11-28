@@ -11,7 +11,11 @@ final authRepoProvider = Provider<IAuthRepo>((ref) {
 class AuthRepo implements IAuthRepo {
   @override
   Future<bool> login({required LoginParam params}) async {
-    await Future<void>.delayed(const Duration(seconds: 3));
+    await Future<void>.delayed(const Duration(seconds: 2));
+    if (params.useName != 'vinh.truongtrong@gmail.com' ||
+        params.password != '123123123') {
+      throw Exception('Wrong usename or password');
+    }
     return true;
     // final client = HttpHelper.getInstance();
     // final response = await client.post(_Endpoint.login, data: params.toJson());

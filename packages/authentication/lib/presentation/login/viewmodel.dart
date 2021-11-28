@@ -10,6 +10,7 @@ import 'package:authentication/domain/repositories/auth_repo.dart';
 import 'package:authentication/domain/usecases/login/params.dart';
 import 'package:authentication/domain/usecases/login/usecase.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:template/core/src/data/models/result.dart';
 import 'package:template/core/src/foundation/foundation.dart';
 
 final loginViewModelProvider =
@@ -22,23 +23,12 @@ class LoginViewModel extends BaseViewModel {
   final Reader _reader;
   late final IAuthRepo _authRepo = _reader(authRepoProvider);
 
-  bool _isLockUI = false;
-
-  bool get isLockUI => _isLockUI;
-  set isLockUI(bool value) {
-    _isLockUI = value;
-    notifyListeners();
-  }
-
-  Future<bool> login({
+  Future<Result<bool>> login({
     required String userName,
     required String password,
   }) async {
-    isLockUI = true;
     final useCase = LoginUseCase(authRepo: _authRepo);
     final params = LoginParam(useName: userName, password: password);
-    final result = await useCase.call(params);
-    isLockUI = false;
-    return result;
+    return await useCase.call(params);
   }
 }

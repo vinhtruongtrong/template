@@ -12,6 +12,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:template/core/core.dart';
+import 'package:template/core/src/widgets/loading/loading_state_viewmodel.dart';
 
 class LoginPage extends HookConsumerWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -20,6 +21,7 @@ class LoginPage extends HookConsumerWidget {
     final router = useRouter();
     final l10n = useL10n();
 
+    final loadingState = useMemoized(() => LoadingStateViewModel().provider);
     final formKey = useMemoized(() => GlobalKey<FormState>());
     final usernameController =
         useTextEditingController(text: 'vinh.truongtrong@gmail.com');
@@ -50,20 +52,11 @@ class LoginPage extends HookConsumerWidget {
               const SizedBox(
                 height: 24,
               ),
-              HookConsumer(
-                builder: (context, ref, _) {
-                  final isLockUI = ref.watch(
-                    loginViewModelProvider.select(
-                      (value) => value.isLockUI,
-                    ),
-                  );
-                  return LoginForm(
-                    formKey: formKey,
-                    usernameController: usernameController,
-                    passwordController: passwordController,
-                    isLockUI: isLockUI,
-                  );
-                },
+              LoginForm(
+                formKey: formKey,
+                usernameController: usernameController,
+                passwordController: passwordController,
+                loadingState: loadingState,
               ),
               const SizedBox(
                 height: 16,
@@ -79,42 +72,49 @@ class LoginPage extends HookConsumerWidget {
               ),
               HookConsumer(
                 builder: (context, ref, _) {
-                  final isLockUI = ref.watch(
-                    loginViewModelProvider.select((value) => value.isLockUI),
-                  );
+                  final isLoading = ref
+                      .watch(
+                        loadingState,
+                      )
+                      .isLoading;
                   return ElevatedButton(
-                    onPressed: isLockUI
+                    onPressed: isLoading
                         ? null
                         : () async {
                             if (formKey.currentState?.validate() == true) {
-                              final userName = usernameController.text;
-                              final password = passwordController.text;
-                              await viewModel
-                                  .login(userName: userName, password: password)
-                                  .then((result) {
-                                if (result) {
-                                  router.replaceNamed('/home');
-                                } else {
-                                  // showDialog(
-                                  //     context: context,
-                                  //     builder: (_) {
-                                  //       return CupertinoAlertDialog(
-                                  //         title: const Text('Lỗi mẹ rồi'),
-                                  //         content: Text(
-                                  //           isLockUI.value.data.toString(),
-                                  //         ),
-                                  //       );
-                                  //     });
-                                }
+                              ref.read(loadingState).whileLoading(() async {
+                                final userName = usernameController.text;
+                                final password = passwordController.text;
+                                final result = await viewModel.login(
+                                  userName: userName,
+                                  password: password,
+                                );
+
+                                result.when(
+                                  success: (_) => router.replaceNamed('/home'),
+                                  failure: (error) {
+                                    showDialog(
+                                      context: context,
+                                      builder: (_) {
+                                        return CupertinoAlertDialog(
+                                          title: Text(error.type.toString()),
+                                          content: Text(
+                                            error.message,
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                );
                               });
                             }
                           },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        ...isLockUI
+                        ...isLoading
                             ? [
-                                const CupertinoActivityIndicator(),
+                                const CircularProgressIndicator.adaptive(),
                                 const SizedBox(
                                   width: 8,
                                 )

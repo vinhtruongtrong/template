@@ -1,3 +1,4 @@
+import 'package:template/core/src/data/models/result.dart';
 import 'package:template/core/src/foundation/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:post/data/post_repo_data.dart';
@@ -16,15 +17,19 @@ class CommentViewModel extends BaseViewModel {
   final Reader _reader;
   late final IPostRepo _postRepo = _reader(postRepoProvider);
 
-  List<Comment>? _comments = [];
-  List<Comment>? get comments => _comments;
-  set comments(List<Comment>? value) {
-    _comments = value;
-    notifyListeners();
-  }
+  Result<List<Comment>>? _comments;
+  Result<List<Comment>>? get comments => _comments;
 
   Future<void> fetchComments({required int postId}) async {
+    await Future.delayed(const Duration(seconds: 3));
     final useCase = GetCommentsUseCase(postRepo: _postRepo);
-    comments = await useCase.call(postId);
+    useCase
+        .call(postId)
+        .then((value) => _comments = value)
+        .whenComplete(notifyListeners);
+  }
+
+  Future<void> fetchHeader() async {
+    await Future.delayed(const Duration(seconds: 5));
   }
 }
