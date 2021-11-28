@@ -12,7 +12,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:template/core/core.dart';
-import 'package:template/core/src/widgets/loading/loading_state_viewmodel.dart';
+import 'package:template/core/src/hooks/hooks.dart';
 
 class LoginPage extends HookConsumerWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -21,7 +21,7 @@ class LoginPage extends HookConsumerWidget {
     final router = useRouter();
     final l10n = useL10n();
 
-    final loadingState = useMemoized(() => LoadingStateViewModel().provider);
+    final loadingState = useLoadingState();
     final formKey = useMemoized(() => GlobalKey<FormState>());
     final usernameController =
         useTextEditingController(text: 'vinh.truongtrong@gmail.com');

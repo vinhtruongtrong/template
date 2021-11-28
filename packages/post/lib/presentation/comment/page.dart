@@ -8,8 +8,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:template/core/core.dart';
 import 'package:template/core/src/widgets/loading/container_with_loading.dart';
-import 'package:template/core/src/widgets/loading/loading_state_viewmodel.dart';
 
 import 'viewmodel.dart';
 
@@ -21,10 +21,8 @@ class CommentPage extends HookConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     assert(postId != null, 'Article is required.');
     final viewModel = ref.read(commentViewModelProvider);
-    final headerLoadingState =
-        useMemoized(() => LoadingStateViewModel().provider);
-    final commentLoadingState =
-        useMemoized(() => LoadingStateViewModel().provider);
+    final headerLoadingState = useLoadingState();
+    final commentLoadingState = useLoadingState();
     useEffect(
       () {
         ref

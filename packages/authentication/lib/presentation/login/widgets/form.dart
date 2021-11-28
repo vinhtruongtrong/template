@@ -18,7 +18,7 @@ class LoginForm extends HookConsumerWidget {
   final GlobalKey<FormState>? formKey;
   final TextEditingController? usernameController;
   final TextEditingController? passwordController;
-  final ChangeNotifierProvider<LoadingStateViewModel>? loadingState;
+  final AutoDisposeChangeNotifierProvider<LoadingStateViewModel>? loadingState;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

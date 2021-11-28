@@ -14,7 +14,7 @@ class ContainerWithLoading extends ConsumerWidget {
 
   final Widget child;
   final Widget? loading;
-  final ChangeNotifierProvider<LoadingStateViewModel>? loadingState;
+  final AutoDisposeChangeNotifierProvider<LoadingStateViewModel>? loadingState;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

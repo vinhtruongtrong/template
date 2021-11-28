@@ -1,9 +1,9 @@
-import 'package:flutter/foundation.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:template/core/src/foundation/foundation.dart';
 
 final loadingStateProvider = LoadingStateViewModel().provider;
 
-class LoadingStateViewModel extends ChangeNotifier {
+class LoadingStateViewModel extends BaseViewModel {
   bool isLoading = false;
 
   Future<dynamic> whileLoading(Future Function() future) {
@@ -26,6 +26,6 @@ class LoadingStateViewModel extends ChangeNotifier {
 }
 
 extension LoadingStateViewModelX on LoadingStateViewModel {
-  ChangeNotifierProvider<LoadingStateViewModel> get provider =>
-      ChangeNotifierProvider((ref) => this);
+  AutoDisposeChangeNotifierProvider<LoadingStateViewModel> get provider =>
+      ChangeNotifierProvider.autoDispose((ref) => this);
 }
