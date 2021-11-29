@@ -69,9 +69,9 @@ class AppError {
           type = AppErrorType.unknown;
       }
     } else {
-      Logger.log('App error(UnKnown): $error', tag: (AppError).toString());
+      Logger.log('$error', tag: (AppError).toString());
       type = AppErrorType.unknown;
-      message = 'App error: $error';
+      message = error.toString();
     }
   }
 }

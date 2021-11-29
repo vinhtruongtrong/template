@@ -43,6 +43,7 @@ dependencies:
   intl: ^0.17.0
 
   google_fonts: ^2.1.0
+  lottie: ^1.1.0
 
   user_agent:
     path: packages/user_agent
@@ -91,6 +92,7 @@ flutter:
   assets:
     - assets/images/
     - assets/animations/
+    - assets/lotties/
   
   fonts:
     - family: Rotunda

@@ -22,11 +22,28 @@ class $AssetsImagesGen {
       const AssetGenImage('assets/images/flutter_logo.png');
 }
 
+class $AssetsLottiesGen {
+  const $AssetsLottiesGen();
+
+  /// File path: assets/lotties/failed.json
+  String get failed => 'assets/lotties/failed.json';
+
+  /// File path: assets/lotties/notice.json
+  String get notice => 'assets/lotties/notice.json';
+
+  /// File path: assets/lotties/success.json
+  String get success => 'assets/lotties/success.json';
+
+  /// File path: assets/lotties/warning.json
+  String get warning => 'assets/lotties/warning.json';
+}
+
 class Assets {
   Assets._();
 
   static const $AssetsAnimationsGen animations = $AssetsAnimationsGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsLottiesGen lotties = $AssetsLottiesGen();
 }
 
 class AssetGenImage extends AssetImage {

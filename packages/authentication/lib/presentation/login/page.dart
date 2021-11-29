@@ -13,6 +13,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:template/core/core.dart';
 import 'package:template/core/src/hooks/hooks.dart';
+import 'package:template/core/src/widgets/dialog/dialog_builder.dart';
 
 class LoginPage extends HookConsumerWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -96,11 +97,11 @@ class LoginPage extends HookConsumerWidget {
                                     showDialog(
                                       context: context,
                                       builder: (_) {
-                                        return CupertinoAlertDialog(
-                                          title: Text(error.type.toString()),
-                                          content: Text(
-                                            error.message,
-                                          ),
+                                        return DialogBuilder.failedDialog(
+                                          title: error.type.toString(),
+                                          content: error.message,
+                                          positiveTitle: 'Close',
+                                          onPositiveClicked: router.pop,
                                         );
                                       },
                                     );
