@@ -44,7 +44,7 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "io.vinh.template.template"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -57,6 +57,21 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+
+    flavorDimensions "environment"
+    productFlavors {
+        development {
+            dimension "environment"
+            resValue "string", "app_name", "template dev"
+            applicationIdSuffix ".dev"
+            versionNameSuffix ".dev"
+        }
+
+        production {
+            dimension "environment"
+            resValue "string", "app_name", "template"
+        }
+    }
 }
 
 flutter {
@@ -66,3 +81,6 @@ flutter {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
+
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'

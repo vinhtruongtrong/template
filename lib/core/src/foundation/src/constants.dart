@@ -5,7 +5,6 @@
  * @Last Modified time: 2021-11-22 11:28:47
  */
 import 'package:enum_to_string/enum_to_string.dart';
-import 'package:flutter/foundation.dart';
 
 enum Flavor { development, production }
 
@@ -26,7 +25,7 @@ class Constants {
         return Constants._dev();
       case Flavor.production:
       default:
-        return kDebugMode ? Constants._dev() : Constants._prd();
+        return Constants._prd();
     }
   }
 

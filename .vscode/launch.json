@@ -5,41 +5,26 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "template",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "template (profile mode)",
+            "name": "development",
+            "program": "lib/main.dart",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "args": [
+                "--dart-define=FLAVOR=development",
+                "--flavor",
+                "development"
+            ]
         },
         {
-            "name": "authentication",
-            "cwd": "packages/authentication",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "authentication (profile mode)",
-            "cwd": "packages/authentication",
+            "name": "production",
+            "program": "lib/main.dart",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "post",
-            "cwd": "packages/post",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "post (profile mode)",
-            "cwd": "packages/post",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
+            "args": [
+                "--dart-define=FLAVOR=production",
+                "--flavor",
+                "production"
+            ]
         }
     ]
 }
