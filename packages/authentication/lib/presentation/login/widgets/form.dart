@@ -18,20 +18,15 @@ class LoginForm extends HookConsumerWidget {
   final GlobalKey<FormState>? formKey;
   final TextEditingController? usernameController;
   final TextEditingController? passwordController;
-  final AutoDisposeChangeNotifierProvider<LoadingStateViewModel>? loadingState;
+  final ProviderBase<LoadingStateViewModel>? loadingState;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isLoading = loadingState != null
-        ? ref
-            .watch(
-              loadingState!,
-            )
-            .isLoading
-        : false;
+    final isLoading =
+        loadingState != null ? ref.watch(loadingState!).isLoading : false;
+
     return Form(
       key: formKey,
-      onChanged: () {},
       child: Column(
         children: [
           TextFormField(

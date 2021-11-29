@@ -17,6 +17,6 @@ class InputValidator {
 
   static bool isValidPassword(String input) {
     const numberCharacter = 6;
-    return input.length >= numberCharacter;
+    return input.trim().length >= numberCharacter;
   }
 }
