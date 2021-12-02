@@ -66,6 +66,7 @@ class LoginPage extends HookConsumerWidget {
                 alignment: Alignment.centerRight,
                 child: TextButton(
                   onPressed: () {
+                    // throw Exception('test');
                     router.navigateNamed('forgot-password');
                   },
                   child: Text(l10n.forgotPasswordButton),

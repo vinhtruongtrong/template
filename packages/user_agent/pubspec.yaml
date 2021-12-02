@@ -10,8 +10,11 @@ dependencies:
   flutter:
     sdk: flutter
   
+  # For get device info and package info
   device_info: ^2.0.2
   package_info: ^2.0.2
+
+  #For model
   json_annotation: ^4.0.1
 
 dev_dependencies:
@@ -19,8 +22,10 @@ dev_dependencies:
     sdk: flutter
     
   build_runner:
+
   # For model
   json_serializable: ^5.0.2
+
   flutter_lints: ^1.0.0
 
 flutter:

@@ -32,4 +32,5 @@ Future<void> main() async {
   }, (error, stackTrace) {
     FirebaseCrashlytics.instance.recordError(error, stackTrace);
   });
+  // FirebaseCrashlytics.instance.crash();
 }

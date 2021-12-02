@@ -4,16 +4,14 @@
  * @Last Modified by: vinhtruongtrong
  * @Last Modified time: 2021-11-25 17:10:10
  */
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:post/presentation/comment/page.dart';
-import 'package:shimmer/shimmer.dart';
-import 'package:template/app/routes/router.dart';
-import 'package:template/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:post/presentation/post/viewmodel.dart';
+import 'package:shimmer/shimmer.dart';
+import 'package:template/app/routes/router.dart';
+import 'package:template/core/core.dart';
 
 class PostPage extends HookConsumerWidget {
   const PostPage({Key? key}) : super(key: key);
